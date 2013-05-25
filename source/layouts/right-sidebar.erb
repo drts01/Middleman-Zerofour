@@ -1,0 +1,32 @@
+<% wrap_layout "base" do %>
+								<div class="8u 5grid-cell-mainContent">
+									<div id="content">
+										<article>
+											<header class="major">
+												<h2>
+													<% if current_article && current_article.headline %>
+													<%= current_article.headline %>
+													<% elsif current_page.data.headline %>
+													<%= current_page.data.headline %>
+													<% elsif current_article && current_article.title %>
+													<%= current_article.title %>
+													<% elsif current_page.data.title %>
+													<%= current_page.data.title %>
+													<% end %></h2>
+												<span class="byline">
+													<% if current_article && current_article.byline %>
+													<%= current_article.byline %>
+													<% elsif current_page.data.byline %>
+													<%= current_page.data.byline %>
+													<% end %>
+												</span>
+											</header>
+											<%= yield %>
+										</article>
+									</div>
+								</div>
+
+								<div class="4u">
+									<div id="sidebar"><%= partial "sidebar" %></div>
+								</div>
+<% end %>

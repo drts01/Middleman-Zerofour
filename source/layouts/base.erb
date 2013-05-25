@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<!--
+	ZeroFour 2.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	Adapted for Middleman by digitalRoots
+	droots.org
+-->
+<html>
+<head><%= partial "layouts/head" %></head>
+<body class="<%= current_page.data.layout %>">		<!-- Header Wrapper -->
+	<div id="header-wrapper">
+		<div class="5grid 5grid-container">
+			<div class="row">
+				<div class="12u">
+					<header id="header"><%= partial "layouts/header" %></header>
+					<% if current_page.data.layout == "homepage" %>
+					<div id="banner"><%= partial "home-banner" %></div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main-wrapper">
+		<% if current_page.data.layout == "homepage" %>
+		<%= partial "page-home" %>
+		<% end %>
+
+		<div class="main-wrapper-style2">
+			<div class="inner">
+	
+				<!-- Feature 2 -->
+				<section class="5grid 5grid-container 
+				<% if current_page.data.layout == "homepage" %>
+				box-feature2
+				<% end %>
+				">
+					<div class="row">
+						<%= yield %>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<%= partial "layouts/page-bottom" %></div>
+
+	<div id="footer-wrapper"><footer id="footer" class="5grid 5grid-container"><%= partial "layouts/footer" %></footer></div>
+</body>
+</html>
