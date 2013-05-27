@@ -7,53 +7,34 @@
 					<!-- Article list -->
 						<section class="box-article-list">
 							<h2 class="icon icon-news">From the blog</h2>
-							
-							<!-- Excerpt -->
-								<article class="box-excerpt">
-									<a href="#" class="image image-left"><img src="images/pic04.jpg" alt="" /></a>
-									<div>
-										<header>
-											<span class="date">December 20, 2012</span>
-											<h3><a href="#">On the eve of the Mayanocalypse</a></h3>
-										</header>
-										<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-										semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-										feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-									</div>
-								</article>
 
-							<!-- Excerpt -->
+								<% page_articles.each_with_index do |article, i| %>
 								<article class="box-excerpt">
-									<a href="#" class="image image-left"><img src="images/pic05.jpg" alt="" /></a>
+									<% if article.data.post_img!=nil %>
+										<% link_to article do %>
+											<%= image_tag article.data.post_img, :class => "image image-left", :width => "180" %>
+										<% end %>
+									<% else %>
+										<% content_tag :div, :class => "image image-left", :style => "width:180px;height:167px;" do %>
+										&nbsp;
+										<% end %>
+									<% end %>
 									<div>
 										<header>
-											<span class="date">December 15, 2012</span>
-											<h3><a href="#">Life as a self-aware meme</a></h3>
+											<span class="date"><%= article.date.strftime('%B %-d, %Y') %></span>
+											<h3><%= link_to article.title, article %></h3>
 										</header>
-										<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-										semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-										feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
+										<% # use article.summary(250) if you have Nokogiri available to show just the first 250 characters
+										 %>
+										<%= article.body %>
 									</div>
 								</article>
-
-							<!-- Excerpt -->
-								<article class="box-excerpt">
-									<a href="#" class="image image-left"><img src="images/pic06.jpg" alt="" /></a>
-									<div>
-										<header>
-											<span class="date">December 12, 2012</span>
-											<h3><a href="#">Facepalm moments in history</a></h3>
-										</header>
-										<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-										semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-										feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-									</div>
-								</article>
+								<% end %>
 
 						</section>
 				</div>
 				<div class="4u">
-				
+
 					<!-- Spotlight -->
 						<section class="box-spotlight pad-left">
 							<h2 class="icon icon-paper">Spotlight</h2>
