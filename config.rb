@@ -5,6 +5,12 @@ require 'yaml'
 ###
 
 @website = OpenStruct.new(YAML::load_file(File.dirname(__FILE__) + "/config.yaml")[:website])
+#Default layout
+set :layout, 'right-sidebar'
+# Use relative URLs
+activate :relative_assets
+#Create a folder for each .html file
+activate :directory_indexes
 
 ###
 ## Blog settings
@@ -13,28 +19,28 @@ require 'yaml'
 Time.zone = "America/Los_Angeles"
 
 activate :blog do |blog|
-  blog.prefix = "/blog"
-  blog.permalink = ":year/:month/:day/:title.html"
-  blog.sources = ":year-:month-:day-:title.html"
-  blog.taglink = "tags/:tag.html"
-  blog.layout = "article"
-  blog.summary_separator = /(READMORE)/
-  blog.summary_length = 250
-  blog.year_link = ":year.html"
-  blog.month_link = ":year/:month.html"
-  blog.day_link = ":year/:month/:day.html"
-  blog.default_extension = ".md"
+  blog.prefix = "blog"
+  # blog.permalink = ":year/:month/:day/:title.html"
+  # blog.sources = ":year-:month-:day-:title.html"
+  # blog.taglink = "tags/:tag.html"
+  blog.layout = "right-sidebar"
+  # blog.summary_separator = /(READMORE)/
+  # blog.summary_length = 250
+  # blog.year_link = ":year.html"
+  # blog.month_link = ":year/:month.html"
+  # blog.day_link = ":year/:month/:day.html"
+  # blog.default_extension = ".markdown"
 
-  blog.tag_template = "/blog/tag.html"
-  blog.calendar_template = "/blog/calendar.html"
+  # blog.tag_template = "tag.html"
+  # blog.calendar_template = "calendar.html"
 
-  blog.paginate = true
-  blog.per_page = 5
-  blog.page_link = "page/:num"
+  # blog.paginate = true
+  # blog.per_page = 10
+  # blog.page_link = "page/:num"
 end
 
-page "/blog/index.html", :layout => :layout
-page "/blog/feed.xml", :layout => false
+#page "/blog/index.html", :layout => 'no-sidebar'
+page "/feed.xml", :layout => false
 
 # With no layout
 page "robots.txt", :layout => false
@@ -103,11 +109,11 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
+  # Minify HTML on build
+  activate :minify_html
+
   # Enable cache buster
   # activate :cache_buster
-
-  # Use relative URLs
-  # activate :relative_assets
 
   # Compress PNGs after build
   # First: gem install middleman-smusher
@@ -117,8 +123,6 @@ configure :build do
   # Or use a different image path
   # set :http_path, "/Content/images/"
 
-  #Create a folder for each .html file
-  activate :directory_indexes
 end
 
 #cDeploy = File.open('config.deploy')
