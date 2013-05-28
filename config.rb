@@ -24,7 +24,6 @@ activate :blog do |blog|
   # blog.sources = ":year-:month-:day-:title.html"
   # blog.taglink = "tags/:tag.html"
   blog.layout = "right-sidebar"
->>>>>>> a228aee8ca4873ea2bed82ef83e3dfee4e8e4f4d
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = ":year.html"
