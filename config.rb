@@ -5,6 +5,12 @@ require 'yaml'
 ###
 
 @website = OpenStruct.new(YAML::load_file(File.dirname(__FILE__) + "/config.yaml")[:website])
+#Default layout
+set :layout, 'right-sidebar'
+# Use relative URLs
+activate :relative_assets
+#Create a folder for each .html file
+activate :directory_indexes
 
 ###
 ## Blog settings
@@ -17,7 +23,8 @@ activate :blog do |blog|
   # blog.permalink = ":year/:month/:day/:title.html"
   # blog.sources = ":year-:month-:day-:title.html"
   # blog.taglink = "tags/:tag.html"
-  blog.layout = "no-sidebar"
+  blog.layout = "right-sidebar"
+>>>>>>> a228aee8ca4873ea2bed82ef83e3dfee4e8e4f4d
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = ":year.html"
@@ -109,9 +116,6 @@ configure :build do
   # Enable cache buster
   # activate :cache_buster
 
-  # Use relative URLs
-  activate :relative_assets
-
   # Compress PNGs after build
   # First: gem install middleman-smusher
   # require "middleman-smusher"
@@ -120,8 +124,6 @@ configure :build do
   # Or use a different image path
   # set :http_path, "/Content/images/"
 
-  #Create a folder for each .html file
-  activate :directory_indexes
 end
 
 #cDeploy = File.open('config.deploy')
@@ -140,6 +142,3 @@ end
 #ConfigDeploy.new.activate_config
 
 #scriptize(IO.read(config-deploy.rb))
-  # Use relative URLs
-  activate :relative_assets
-    activate :directory_indexes
