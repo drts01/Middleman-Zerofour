@@ -6,31 +6,19 @@ title: Home
 				<div class="6u">
 					<section class="pad-right">
 						<header class="major">
-							<h2>And this is a subheading</h2>
-							<span class="byline">It’s important but clearly not *that* important</span>
+							<h2><%= link_to blog.tags["headline"][0].title, blog.tags["headline"][0] %></h2>
+							<span class="byline"><%= blog.tags["headline"][0].data.byline %></span>
 						</header>
-						<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. 
-						Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. 
-						Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi 
-						consequat etiam.</p>
-						<footer>
-							<a href="#" class="button button-medium button-icon button-icon-rarrow">Let's do this</a>
-						</footer>
+						<%= blog.tags["headline"][0].body %>
 					</section>
 				</div>
 				<div class="6u">
 					<section class="pad-left">
 						<header class="major">
-							<h2>This is also a subheading</h2>
-							<span class="byline">And is as less important as the other one</span>
+							<h2><%= link_to blog.tags["headline"][1].title, blog.tags["headline"][1] %></h2>
+							<span class="byline"><%= blog.tags["headline"][1].data.byline %></span>
 						</header>
-						<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. 
-						Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. 
-						Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi 
-						consequat etiam.</p>
-						<footer>
-							<a href="#" class="button button-medium button-alt button-icon button-icon-info">Wait, what?</a>
-						</footer>
+						<%= blog.tags["headline"][1].body %>
 					</section>
 				</div>
 

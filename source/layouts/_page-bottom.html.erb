@@ -9,26 +9,28 @@
 							<h2 class="icon icon-news">From the blog</h2>
 
 								<% page_articles.each_with_index do |article, i| %>
-								<article class="box-excerpt">
-									<% if article.data.post_img!=nil %>
-										<% link_to article do %>
-											<%= image_tag article.data.post_img, :class => "image image-left", :width => "180" %>
+									<% unless (blog.tags["spotlight"][0] == article || blog.tags["headline"][0] == article || blog.tags["headline"][1] == article) %>
+									<article class="box-excerpt">
+										<% if article.data.post_img!=nil %>
+											<% link_to article, :class => "image image-left" do %>
+												<%= image_tag article.data.post_img %>
+											<% end %>
+										<% else %>
+											<% content_tag :div, :class => "image image-left", :style => "width:180px;height:167px;" do %>
+											&nbsp;
+											<% end %>
 										<% end %>
-									<% else %>
-										<% content_tag :div, :class => "image image-left", :style => "width:180px;height:167px;" do %>
-										&nbsp;
-										<% end %>
+										<div>
+											<header>
+												<span class="date"><%= article.date.strftime('%B %-d, %Y') %></span>
+												<h3><%= link_to article.title, article %></h3>
+											</header>
+											<% # use article.summary(250) if you have Nokogiri available to show just the first 250 characters
+											 %>
+											<%= article.body %>
+										</div>
+									</article>
 									<% end %>
-									<div>
-										<header>
-											<span class="date"><%= article.date.strftime('%B %-d, %Y') %></span>
-											<h3><%= link_to article.title, article %></h3>
-										</header>
-										<% # use article.summary(250) if you have Nokogiri available to show just the first 250 characters
-										 %>
-										<%= article.body %>
-									</div>
-								</article>
 								<% end %>
 
 						</section>
@@ -39,19 +41,18 @@
 						<section class="box-spotlight pad-left">
 							<h2 class="icon icon-paper">Spotlight</h2>
 							<article>
-								<a href="#" class="image image-full"><img src="images/pic07.jpg" alt=""></a>
+								<% if blog.tags["spotlight"][0].data.post_img != nil %>
+									<% link_to blog.tags["spotlight"][0], :class => "image image-full" do %>
+										<%= image_tag blog.tags["spotlight"][0].data.post_img %>
+									<% end %>
+								<% end %>
 								<header>
-									<h3><a href="#">Why staplers matter</a></h3>
-									<span class="byline">They hold things together</span>
+									<h3><%= link_to blog.tags["spotlight"][0].title, blog.tags["spotlight"][0] %></h3>
+									<span class="byline"><%= blog.tags["spotlight"][0].data.byline %></span>
 								</header>
-								<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus semper mod 
-								quisturpis nisi consequat ornare in, hendrerit in lectus semper mod quis eget mi quat etiam 
-								lorem. Phasellus quam turpis, feugiat sed et lorem ipsum dolor consequat dolor feugiat sed
-								et tempus consequat etiam.</p>
-								<p>Lorem ipsum dolor quam turpis, feugiat sit amet ornare in, hendrerit in lectus semper 
-								mod quisturpis nisi consequat etiam lorem sed amet quam turpis.</p>
+								<%= blog.tags["spotlight"][0].body %>
 								<footer>
-									<a href="#" class="button button-alt button-icon button-icon-paper">Continue Reading</a>
+									<%= link_to 'Continue Reading', blog.tags["spotlight"][0], :class => "button button-alt button-icon button-icon-paper" %>
 								</footer>
 							</article>
 						</section>
