@@ -6,7 +6,8 @@ Middleman adaption of the Zerofour HTML5 template
 Todo
 =================
   * Navigation
-  * Blog
+  * Blog index and feed
+  * Sitemap
 
 Credits
 =================
