@@ -9,7 +9,7 @@
 							<h2 class="icon icon-news">From the blog</h2>
 
 								<% page_articles.each_with_index do |article, i| %>
-									<% unless (blog.tags["spotlight"][0] == article || blog.tags["headline"][0] == article || blog.tags["headline"][1] == article) %>
+									<% unless blog.tags["spotlight"][0] == article %>
 									<article class="box-excerpt">
 										<% if article.data.post_img!=nil %>
 											<% link_to article, :class => "image image-left" do %>
